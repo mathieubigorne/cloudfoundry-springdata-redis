@@ -1,6 +1,8 @@
 package fr.poc.spring;
 
-public class Todo {
+import java.io.Serializable;
+
+public class Todo implements Serializable {
 	private String name;
 	
 	public Todo(String name) {
