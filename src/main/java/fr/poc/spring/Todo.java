@@ -3,6 +3,8 @@ package fr.poc.spring;
 import java.io.Serializable;
 
 public class Todo implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	private String name;
 	
 	public Todo(String name) {

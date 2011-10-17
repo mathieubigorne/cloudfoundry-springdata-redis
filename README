@@ -1,1 +1,6 @@
-Just a POC using Spring MVC / Clound Foundry
+cloudfoundry-springdata-redis
+
+
+vmc push SpringMVC --path target/
+vmc logs SpringMVC
+vmc update SpringMVC --path target/

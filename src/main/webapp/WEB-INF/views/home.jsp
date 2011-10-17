@@ -6,10 +6,10 @@
 	<title>Home</title>
 </head>
 <body>
-<h1>Mathieu & Cedric POC TuduList</h1>
+<h1>cloudfoundry-springdata-redis</h1>
 
 
-<h1>Liste des TODOS (${fn:length(todos)})</h1>
+<h1>Liste (${fn:length(todos)})</h1>
 <ul>
 	<c:forEach var="todo" items="${todos}">
 		<li>${todo.name}</li>

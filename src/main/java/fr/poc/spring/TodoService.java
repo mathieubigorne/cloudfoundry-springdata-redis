@@ -19,24 +19,24 @@ public class TodoService {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
+	private static final String REDIS_KEY = "todos";
+	
 	@Inject
 	private RedisTemplate<String, Todo> template;
 	
-	
-	public List<Todo> getTodos() {
-		List<Todo> todos = new ArrayList<Todo>();
-		
+	public void createTodo(String name) {
 		UUID uid = UUID.randomUUID();
 		Date now = new Date();
 		
-		Todo newTodo = new Todo("Nouveau todo " + uid + " " + now.toString());
+		Todo newTodo = new Todo(name + " " + uid + " " + now.toString());
+		template.opsForHash().put(REDIS_KEY, uid, newTodo);
+	}
+	
+	public List<Todo> getTodos() {
+		List<Todo> todos = new ArrayList<Todo>();		
+		logger.info("List size : " + template.opsForHash().size(REDIS_KEY));
 		
-		
-		template.opsForHash().put("redis", uid, newTodo);
-		
-		logger.info("Taille liste redis : " + template.opsForHash().size("redis"));
-		
-		for (Object o : template.opsForHash().values("redis")) {
+		for (Object o : template.opsForHash().values(REDIS_KEY)) {
 			todos.add((Todo) o);
 		}
 		
